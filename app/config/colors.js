@@ -1,11 +1,12 @@
 export default {
-  primary: '#618C8C',
-  secondary: '#ABD9BF',
+  primary: '#777DF2',
+  secondary: '#636AF2',
+  background: '#0D0D0D',
+  yellow: '#F7DA7B',
   black: '#000',
-  white: '#fff',
-  dark: '#0c0c0c',
-  medium: '#6e6969',
-  light: '#f8f4f4',
+  white: '#f8f4f4',
+  medium: '#19191B',
+  light: '#454549',
   danger: '#ff5252',
   error: '#ff9494',
 };

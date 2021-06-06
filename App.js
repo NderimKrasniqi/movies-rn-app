@@ -1,8 +1,5 @@
 import React from 'react';
-
-import Screen from './app/components/Screen';
-import Text from './app/components/Text';
-
+import HomeScreen from './app/screens/HomeScreen';
 export default function App() {
-  return <Screen></Screen>;
+  return <HomeScreen />;
 }
