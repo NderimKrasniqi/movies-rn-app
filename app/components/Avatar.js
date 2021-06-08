@@ -20,7 +20,9 @@ function Avatar({ source, size }) {
 }
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'flex-end',
+    position: 'absolute',
+    right: 30,
+    top: 10,
   },
 });
 

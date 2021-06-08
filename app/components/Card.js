@@ -4,13 +4,15 @@ import {
   StyleSheet,
   Image,
   TouchableWithoutFeedback,
+  TouchableOpacity,
 } from 'react-native';
+import defaultStyles from '../config/styles';
 import Rating from './Rating';
 import Text from './Text';
 
 function Card({ title, uri, score, liked, onPress }) {
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
+    <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
         <Image
           ImageResizeMode='contain'
@@ -19,20 +21,20 @@ function Card({ title, uri, score, liked, onPress }) {
         />
         <View style={styles.detailContainer}>
           <Text ellipsizeMode='tail' numberOfLines={1} style={styles.title}>
-            {title || 'Aquaman'}
+            {title}
           </Text>
-          <Rating style={styles.rating} score={score} />
+          <Rating style={styles.rating} score={score / 2} />
         </View>
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
-    marginVertical: 20,
-    width: 160,
-    height: 300,
+    marginVertical: 25,
+    width: defaultStyles.dimension.width,
+    height: 290,
     borderRadius: 10,
     overflow: 'hidden',
   },
