@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, FlatList } from 'react-native';
-import { getData } from '../redux/actions/data.Actions';
+import { getTrending } from '../store/actions';
 import Avatar from '../components/Avatar';
 import PageTitle from '../components/PageTitle';
 import ActivityIndicator from '../components/ActivityIndicator';
@@ -12,12 +12,11 @@ import Screen from '../components/Screen';
 
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
-  const fetchedData = useSelector((state) => state.data);
-  const { loading, error, data } = fetchedData;
+  const data = useSelector((state) => state.movies);
+  const { error, loading, movies } = data;
   useEffect(() => {
-    dispatch(getData());
-  }, []);
-
+    dispatch(getTrending());
+  }, [dispatch]);
   return (
     <Screen style={styles.container}>
       <Avatar source={require('../assets/Lionel.jpg')} size={75} />
@@ -30,8 +29,8 @@ function HomeScreen({ navigation }) {
       )}
       <ActivityIndicator visible={loading} />
       <FlatList
-        data={data}
-        keyExtractor={(data) => data.id}
+        data={movies}
+        keyExtractor={(movies) => movies.id}
         numColumns={2}
         columnWrapperStyle={styles.list}
         showsVerticalScrollIndicator={false}
@@ -39,7 +38,7 @@ function HomeScreen({ navigation }) {
         renderItem={({ item }) => (
           <Card
             title={item.original_title || item.name}
-            uri={`http://image.tmdb.org/t/p/w185${
+            uri={`http://image.tmdb.org/t/p/w342${
               item.poster_path || item.backdrop_path
             }`}
             score={item.vote_average}

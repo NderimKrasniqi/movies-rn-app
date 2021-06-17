@@ -1,44 +1,45 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import colors from '../config/colors';
 
-function Rating({ score }) {
-  const size = 15;
+function Rating({ score, size, style }) {
+  const vote = score / 2;
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <MaterialCommunityIcons
         name={
-          score >= 1 ? 'star' : score >= 0.5 ? 'star-half-full' : 'star-outline'
+          vote >= 1 ? 'star' : vote >= 0.5 ? 'star-half-full' : 'star-outline'
         }
-        color='yellow'
+        color={colors.yellow}
         size={size}
       />
       <MaterialCommunityIcons
         name={
-          score >= 2 ? 'star' : score >= 1.5 ? 'star-half-full' : 'star-outline'
+          vote >= 2 ? 'star' : vote >= 1.5 ? 'star-half-full' : 'star-outline'
         }
-        color='yellow'
+        color={colors.yellow}
         size={size}
       />
       <MaterialCommunityIcons
         name={
-          score >= 3 ? 'star' : score >= 2.5 ? 'star-half-full' : 'star-outline'
+          vote >= 3 ? 'star' : vote >= 2.5 ? 'star-half-full' : 'star-outline'
         }
-        color='yellow'
+        color={colors.yellow}
         size={size}
       />
       <MaterialCommunityIcons
         name={
-          score >= 4 ? 'star' : score >= 3.5 ? 'star-half-full' : 'star-outline'
+          vote >= 4 ? 'star' : vote >= 3.5 ? 'star-half-full' : 'star-outline'
         }
-        color='yellow'
+        color={colors.yellow}
         size={size}
       />
       <MaterialCommunityIcons
         name={
-          score >= 5 ? 'star' : score >= 4.5 ? 'star-half-full' : 'star-outline'
+          vote >= 5 ? 'star' : vote >= 4.5 ? 'star-half-full' : 'star-outline'
         }
-        color='yellow'
+        color={colors.yellow}
         size={size}
       />
     </View>

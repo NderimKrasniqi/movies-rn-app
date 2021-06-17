@@ -1,14 +1,13 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import defaultStyles from '../config/styles';
-import Avatar from './Avatar';
 import Text from './Text';
 
-function PageTitle({ title, tag }) {
+function PageTitle({ title, tag, style }) {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.tag}>{tag}</Text>
+      {tag && <Text style={styles.tag}>{tag}</Text>}
     </View>
   );
 }

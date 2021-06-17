@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Image,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-} from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import defaultStyles from '../config/styles';
 import Rating from './Rating';
 import Text from './Text';
 
-function Card({ title, uri, score, liked, onPress }) {
+function Card({ title, uri, score, onPress }) {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.card}>
@@ -23,7 +17,7 @@ function Card({ title, uri, score, liked, onPress }) {
           <Text ellipsizeMode='tail' numberOfLines={1} style={styles.title}>
             {title}
           </Text>
-          <Rating style={styles.rating} score={score / 2} />
+          <Rating style={styles.rating} score={score} size={15} />
         </View>
       </View>
     </TouchableOpacity>

@@ -1,7 +1,6 @@
 import { Platform, Dimensions } from 'react-native';
-
 import colors from './colors';
-const { height, width } = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 export default {
   dimension: {
     width: width / 2 - 50,
@@ -9,8 +8,7 @@ export default {
   colors,
   text: {
     color: colors.white,
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: Platform.OS === 'android' ? 'Roboto' : 'Avenir',
-    width: '100%',
   },
 };

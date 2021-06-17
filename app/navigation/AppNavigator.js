@@ -38,11 +38,7 @@ const AppNavigator = () => {
         component={FavoritesScreen}
         options={{
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name='heart-outline'
-              color={color}
-              size={30}
-            />
+            <MaterialCommunityIcons name='account' color={color} size={30} />
           ),
         }}
       />
