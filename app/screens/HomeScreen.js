@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, FlatList } from 'react-native';
-import { getTrending } from '../store/actions';
+import { getTrending, getStoredFav } from '../store/actions';
 import Avatar from '../components/Avatar';
 import PageTitle from '../components/PageTitle';
 import ActivityIndicator from '../components/ActivityIndicator';

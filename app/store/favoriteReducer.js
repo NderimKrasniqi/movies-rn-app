@@ -1,4 +1,4 @@
-import { REMOVE_FAVORITES, TOGGLE_FAVORITE } from './actionTypes';
+import { TOGGLE_FAVORITE, GET_FROM_LOCAL } from './actionTypes';
 
 const favoriteReducer = (
   state = { favoriteMovies: [], listOfFavorites: [] },
@@ -18,6 +18,14 @@ const favoriteReducer = (
         listOfFavorites: exists
           ? [...favIds]
           : [...state.listOfFavorites, item.id],
+      };
+
+    case GET_FROM_LOCAL:
+      const { fav, ids } = action.payload;
+      return {
+        ...state,
+        favoriteMovies: fav,
+        listOfFavorites: ids,
       };
 
     default:
