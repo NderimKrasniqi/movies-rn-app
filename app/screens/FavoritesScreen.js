@@ -1,19 +1,14 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { StyleSheet, FlatList } from 'react-native';
-import { getStoredFav } from '../store/actions';
 import Screen from '../components/Screen';
 import FavoriteItem from '../components/FavoriteItem';
 import ListItemSeparator from '../components/ListItemSeparator';
 import PageTitle from '../components/PageTitle';
 
-function FavoritesScreen(props) {
-  const dispatch = useDispatch();
+function FavoritesScreen() {
   const data = useSelector((state) => state.favoriteMovies);
   const { favoriteMovies } = data;
-  useEffect(() => {
-    dispatch(getStoredFav());
-  }, [dispatch, getStoredFav]);
   return (
     <Screen style={styles.container}>
       <PageTitle title='Favorites' style={styles.pageTitle} />

@@ -1,4 +1,3 @@
-import cache from '../api/cache';
 import fetchApi from '../api/data';
 import {
   TOGGLE_FAVORITE,
@@ -9,7 +8,6 @@ import {
   GET_MOVIE_SUCCESS,
   GET_MOVIE_FAIL,
   CLEAR_CURRENT,
-  GET_FROM_LOCAL,
 } from './actionTypes';
 
 export const getTrending = () => async (dispatch) => {
@@ -51,23 +49,4 @@ export const getMovie = (item) => async (dispatch, getState) => {
 export const addToFavorite = () => (dispatch, getState) => {
   const { movie } = getState().movie;
   dispatch({ type: TOGGLE_FAVORITE, payload: movie });
-  const { favoriteMovies, listOfFavorites } = getState().favoriteMovies;
-  cache.storeData(favoriteMovies, 'favorites');
-  cache.storeData(listOfFavorites, 'ids');
-};
-
-export const getStoredFav = () => async (dispatch) => {
-  try {
-    const fav = await cache.getData('favorites');
-    const ids = await cache.getData('ids');
-    dispatch({
-      type: GET_FROM_LOCAL,
-      payload: { fav, ids },
-    });
-  } catch (error) {
-    dispatch({
-      type: GET_FROM_LOCAL,
-      payload: error,
-    });
-  }
 };

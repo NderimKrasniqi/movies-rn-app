@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { color } from 'react-native-reanimated';
 import colors from '../config/colors';
 import Text from './Text';
 function Info({ title, data, style }) {

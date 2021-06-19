@@ -67,7 +67,7 @@ function MovieDetailScreen({ route }) {
           <View style={styles.ratingContainer}>
             <Rating
               style={styles.rating}
-              score={movie?.vote_average / 2}
+              score={movie?.vote_average}
               size={20}
             />
             <Text style={styles.vote}>{movie?.vote_average}</Text>
