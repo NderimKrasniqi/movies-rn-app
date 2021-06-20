@@ -14,7 +14,7 @@ function PageTitle({ title, tag, style }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 20,
+    marginTop: 20,
   },
   title: {
     fontWeight: 'bold',

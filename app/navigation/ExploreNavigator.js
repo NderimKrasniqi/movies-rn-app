@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 const { height, width } = Dimensions.get('screen');
 
 const ExploreNavigator = () => (
-  <Stack.Navigator mode='modal'>
+  <Stack.Navigator mode='card'>
     <Stack.Screen
       name='HomeScreen'
       component={HomeScreen}
@@ -28,7 +28,7 @@ const ExploreNavigator = () => (
           marginRight: 30,
         },
 
-        gestureResponseDistance: { vertical: height },
+        gestureResponseDistance: { horizontal: width },
         headerTransparent: true,
         headerTitle: false,
         headerBackTitleVisible: false,

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorite, getMovie } from '../store/actions';
 import { minToHours, getYear } from '../utils/utils';
 import ActivityIndicator from '../components/ActivityIndicator';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import colors from '../config/colors';
 import Text from '../components/Text';
 import Liked from '../components/Liked';
@@ -20,20 +20,16 @@ function MovieDetailScreen({ route }) {
 
   useEffect(() => {
     dispatch(getMovie(item));
-  }, [dispatch]);
-
-  const handLiked = () => {
-    dispatch(addToFavorite());
-  };
+  }, []);
 
   return (
-    <View>
+    <ScrollView>
       {error && (
         <View>
           <Text style={styles.error}>Couldn't retrieve the data.</Text>
         </View>
       )}
-      {loading && <ActivityIndicator visible={loading} />}
+      {<ActivityIndicator visible={loading} />}
       <View>
         <GradientImage
           style={styles.image}
@@ -50,7 +46,7 @@ function MovieDetailScreen({ route }) {
               style={styles.liked}
               size={26}
               favorite={movie?.favorite}
-              onPress={handLiked}
+              onPress={() => dispatch(addToFavorite(movie))}
             />
           </View>
 
@@ -73,12 +69,10 @@ function MovieDetailScreen({ route }) {
             <Text style={styles.vote}>{movie?.vote_average}</Text>
             <Text style={styles.voteTotal}>/10</Text>
           </View>
-          <Text ellipsizeMode='tail' numberOfLines={14} style={styles.overview}>
-            {movie?.overview}
-          </Text>
+          <Text style={styles.overview}>{movie?.overview}</Text>
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 }
 

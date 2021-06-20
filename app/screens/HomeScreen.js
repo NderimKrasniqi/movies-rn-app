@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyleSheet, FlatList } from 'react-native';
-import { getTrending, getStoredFav } from '../store/actions';
+import { getTrending, getSearch, clearSearch } from '../store/actions';
 import Avatar from '../components/Avatar';
 import PageTitle from '../components/PageTitle';
 import ActivityIndicator from '../components/ActivityIndicator';
@@ -11,26 +11,48 @@ import Text from '../components/Text';
 import Screen from '../components/Screen';
 
 function HomeScreen({ navigation }) {
+  const [value, onChangeText] = useState('');
+  const [searching, setSearching] = useState(false);
+
   const dispatch = useDispatch();
   const data = useSelector((state) => state.movies);
-  const { error, loading, movies } = data;
+  const { error, loading, movies, searched } = data;
+
   useEffect(() => {
     dispatch(getTrending());
-  }, [dispatch]);
+  }, [searching]);
+
+  const handleChange = () => {
+    setSearching(false);
+    if (value !== '') {
+      setSearching(true);
+      dispatch(getSearch(value));
+    } else {
+      dispatch(clearSearch());
+    }
+  };
   return (
     <Screen style={styles.container}>
       <Avatar source={require('../assets/Lionel.jpg')} size={75} />
       <PageTitle title='Explore' tag="Let's find your favorite movie or show" />
-      <SearchBar />
+      <SearchBar
+        onChangeText={(text) => onChangeText(text)}
+        onEndEditing={() => {
+          handleChange();
+        }}
+        returnKeyType='search'
+        value={value}
+      />
       {error && (
         <>
           <Text style={styles.error}>Couldn't retrieve the data.</Text>
         </>
       )}
       <ActivityIndicator visible={loading} />
+
       <FlatList
-        data={movies}
-        keyExtractor={(movies) => movies.id}
+        data={searching ? searched : movies}
+        keyExtractor={(data) => data.id}
         numColumns={2}
         columnWrapperStyle={styles.list}
         showsVerticalScrollIndicator={false}

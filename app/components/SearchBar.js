@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 import defaultStyles from '../config/styles';
 
 function SearchBar({ width = '100%', ...otherProps }) {
+  const [text, setText] = useState('');
   return (
     <View style={[styles.container, { width }]}>
       <Feather
@@ -16,7 +17,8 @@ function SearchBar({ width = '100%', ...otherProps }) {
       <TextInput
         placeholderTextColor={defaultStyles.colors.light}
         placeholder='Search...'
-        style={defaultStyles.text}
+        type='text'
+        style={[defaultStyles.text, { width }]}
         {...otherProps}
       />
     </View>

@@ -1,13 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Text from '../components/Text';
-import Rating from './Rating';
 import Info from './Info';
-import Genres from './Genres';
 import colors from '../config/colors';
 
-function FavoriteItem({ data }) {
+function FavoriteItem({ data, renderRightActions }) {
   const {
     title,
     name,
@@ -21,31 +20,43 @@ function FavoriteItem({ data }) {
   } = data;
   const img = `http://image.tmdb.org/t/p/w342${poster_path}`;
   return (
-    <View style={styles.container}>
-      <View style={styles.left}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: img,
-          }}
+    <Swipeable renderRightActions={renderRightActions}>
+      <View style={styles.container}>
+        <View style={styles.left}>
+          <Image
+            style={styles.image}
+            source={{
+              uri: img,
+            }}
+          />
+        </View>
+        <View style={styles.right}>
+          <Text numberOfLines={1} style={styles.title}>
+            {title || name}
+          </Text>
+          <View style={styles.vote}>
+            <MaterialCommunityIcons
+              name='star'
+              color={colors.yellow}
+              size={15}
+            />
+            <Text style={styles.voteText}>{vote_average}</Text>
+          </View>
+          {status && <Info title='Status' data={status} />}
+          {release_date && <Info title='Release' data={release_date} />}
+          {last_air_date && <Info title='Last airdate' data={last_air_date} />}
+          {next_episode_to_air && (
+            <Info title='Next airdate' data={next_episode_to_air['air_date']} />
+          )}
+        </View>
+
+        <MaterialCommunityIcons
+          color={colors.light}
+          name='chevron-right'
+          size={25}
         />
       </View>
-      <View style={styles.right}>
-        <Text numberOfLines={1} style={styles.title}>
-          {title || name}
-        </Text>
-        <View style={styles.vote}>
-          <MaterialCommunityIcons name='star' color={colors.yellow} size={15} />
-          <Text style={styles.voteText}>{vote_average}</Text>
-        </View>
-        {status && <Info title='Status' data={status} />}
-        {release_date && <Info title='Release' data={release_date} />}
-        {last_air_date && <Info title='Last airdate' data={last_air_date} />}
-        {next_episode_to_air && (
-          <Info title='Next airdate' data={next_episode_to_air['air_date']} />
-        )}
-      </View>
-    </View>
+    </Swipeable>
   );
 }
 

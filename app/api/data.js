@@ -9,7 +9,13 @@ const fetchMovie = (item) =>
     `https://api.themoviedb.org/3/${item.media_type}/${item.id}?api_key=${API_KEY}&language=en-US`
   );
 
+const fetchSearch = (query) =>
+  axios.get(
+    `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&language=en-US&query=${query}&page=1&include_adult=false`
+  );
+
 export default {
   fetchTrendingList,
   fetchMovie,
+  fetchSearch,
 };
