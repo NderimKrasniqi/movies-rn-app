@@ -33,7 +33,6 @@ export const getTrending = () => async (dispatch) => {
 
 export const getMovie = (item) => async (dispatch, getState) => {
   const { listOfFavorites } = getState().favoriteMovies;
-  dispatch({ type: CLEAR_CURRENT });
   dispatch({ type: GET_MOVIE_REQUEST });
 
   try {
@@ -71,6 +70,9 @@ export const addToFavorite = (item) => (dispatch) => {
   dispatch({ type: TOGGLE_FAVORITE, payload: item });
 };
 
+export const clearCurrent = () => (dispatch) => {
+  dispatch({ type: CLEAR_CURRENT });
+};
 export const clearSearch = () => (dispatch) => {
   dispatch({ type: SEARCH_CLEAR });
 };

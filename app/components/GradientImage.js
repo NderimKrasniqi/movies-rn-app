@@ -9,10 +9,10 @@ function GradientImage({ uri }) {
       <LinearGradient
         colors={[
           'transparent',
-          'rgba(13,13,13,0.2)',
-          'rgba(13,13,13,0.4)',
-          'rgba(13,13,13,0.6)',
-          'rgba(13,13,13,0.8)',
+          'rgba(13,13,13,0.1)',
+          'rgba(13,13,13,0.3)',
+          'rgba(13,13,13,0.5)',
+          'rgba(13,13,13,0.7)',
           'rgba(13,13,13,1)',
         ]}
         style={styles.absolute}
@@ -24,7 +24,7 @@ function GradientImage({ uri }) {
 const styles = StyleSheet.create({
   container: {},
   image: {
-    height: 400,
+    height: 450,
     width: '100%',
     resizeMode: 'cover',
   },
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     right: 0,
-    top: 300,
+    top: 350,
     height: 100,
   },
 });

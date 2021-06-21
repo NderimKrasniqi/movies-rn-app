@@ -16,42 +16,44 @@ function HomeScreen({ navigation }) {
 
   const dispatch = useDispatch();
   const data = useSelector((state) => state.movies);
-  const { error, loading, movies, searched } = data;
+  const { error, loading, movies } = data;
+  const searchData = useSelector((state) => state.search);
+  const { loadingSearch, errorSearch, searched } = searchData;
 
   useEffect(() => {
     dispatch(getTrending());
-  }, [searching]);
+  }, []);
 
-  const handleChange = () => {
-    setSearching(false);
-    if (value !== '') {
+  const handleSearch = () => {
+    if (value) {
       setSearching(true);
       dispatch(getSearch(value));
     } else {
+      setSearching(false);
       dispatch(clearSearch());
     }
   };
+
   return (
     <Screen style={styles.container}>
       <Avatar source={require('../assets/Lionel.jpg')} size={75} />
       <PageTitle title='Explore' tag="Let's find your favorite movie or show" />
       <SearchBar
         onChangeText={(text) => onChangeText(text)}
-        onEndEditing={() => {
-          handleChange();
-        }}
         returnKeyType='search'
         value={value}
+        onEndEditing={() => handleSearch()}
       />
-      {error && (
-        <>
-          <Text style={styles.error}>Couldn't retrieve the data.</Text>
-        </>
-      )}
-      <ActivityIndicator visible={loading} />
+      {error ||
+        (errorSearch && (
+          <>
+            <Text style={styles.error}>Couldn't retrieve the data.</Text>
+          </>
+        ))}
+      <ActivityIndicator visible={loading || loadingSearch} />
 
       <FlatList
-        data={searching ? searched : movies}
+        data={!searching ? movies : searched}
         keyExtractor={(data) => data.id}
         numColumns={2}
         columnWrapperStyle={styles.list}

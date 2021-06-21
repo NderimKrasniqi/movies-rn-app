@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToFavorite, getMovie } from '../store/actions';
+import { addToFavorite, clearCurrent, getMovie } from '../store/actions';
 import { minToHours, getYear } from '../utils/utils';
 import ActivityIndicator from '../components/ActivityIndicator';
 import { StyleSheet, View, ScrollView } from 'react-native';
@@ -20,7 +20,11 @@ function MovieDetailScreen({ route }) {
 
   useEffect(() => {
     dispatch(getMovie(item));
-  }, []);
+
+    return () => {
+      dispatch(clearCurrent());
+    };
+  }, [item]);
 
   return (
     <ScrollView>
@@ -38,23 +42,20 @@ function MovieDetailScreen({ route }) {
       </View>
       {movie && (
         <View style={styles.container}>
-          <View style={styles.likedContainer}>
-            <Text numberOfLines={1} style={styles.title}>
-              {movie?.title || movie?.name}
-            </Text>
-            <Liked
-              style={styles.liked}
-              size={26}
-              favorite={movie?.favorite}
-              onPress={() => dispatch(addToFavorite(movie))}
-            />
-          </View>
-
+          <Text numberOfLines={1} style={styles.title}>
+            {movie?.title || movie?.name}
+          </Text>
+          <Liked
+            style={styles.liked}
+            size={30}
+            favorite={movie?.favorite}
+            onPress={() => dispatch(addToFavorite(movie))}
+          />
           <View style={styles.detailContainer}>
             <Text style={styles.date}>
               {getYear(movie?.release_date || movie?.first_air_date)}
             </Text>
-            <Genres style={styles.genres} genres={movie?.genres} split='|' />
+            <Genres style={styles.genres} genres={movie?.genres} />
             <Text style={styles.runtime}>
               {minToHours(movie?.runtime || movie?.episode_run_time)}
             </Text>
@@ -78,24 +79,13 @@ function MovieDetailScreen({ route }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: '50%',
+    height: '40%',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 35,
-  },
-  likedContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  airdates: {
-    flexDirection: 'row',
-  },
-  airText: {
-    marginRight: 5,
-    fontSize: 14,
+    paddingHorizontal: 30,
   },
   liked: {
-    marginLeft: 5,
+    marginTop: 5,
     justifyContent: 'center',
     alignSelf: 'center',
   },
@@ -103,7 +93,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     textAlign: 'center',
-    marginVertical: 15,
+    marginVertical: 10,
   },
   title: {
     textAlign: 'center',
@@ -125,7 +115,8 @@ const styles = StyleSheet.create({
   },
   genres: {
     color: colors.light,
-    marginHorizontal: 10,
+    marginHorizontal: 3,
+    fontSize: 13,
   },
   rating: {
     marginRight: 10,
@@ -136,11 +127,10 @@ const styles = StyleSheet.create({
   },
   voteTotal: {
     fontSize: 15,
-    color: colors.light,
+    color: colors.white,
   },
-  overviewWrapper: {},
   overview: {
-    marginVertical: 20,
+    marginVertical: 15,
     textAlign: 'left',
   },
   error: {

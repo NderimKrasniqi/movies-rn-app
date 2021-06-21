@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import moviesReducer from './moviesReducer';
 import favoriteReducer from './favoriteReducer';
 import movieReducer from './movieReducer';
+import searchReducer from './searchReducer';
 
 // Middleware: Redux Persist Config
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   movies: moviesReducer,
   favoriteMovies: favoriteReducer,
   movie: movieReducer,
+  search: searchReducer,
 });
 
 const persistConfig = {
@@ -23,7 +25,7 @@ const persistConfig = {
   // Whitelist (Save Specific Reducers)
   whitelist: ['favoriteMovies'],
   // Blacklist (Don't Save Specific Reducers)
-  blacklist: ['movies', 'movie'],
+  blacklist: ['movies', 'movie', 'search'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -11,9 +11,9 @@ export const minToHours = (num) => {
     var hours = Math.floor(num / 60);
     var minutes = num % 60;
     if (hours < 1) {
-      return minutes + 'm';
+      return `${minutes}m`;
     }
-    return hours + 'h ' + minutes + 'm';
+    return `${hours}h ${minutes}m`;
   }
 };
 
