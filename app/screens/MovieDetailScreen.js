@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorite, clearCurrent, getMovie } from '../store/actions';
 import { minToHours, getYear } from '../utils/utils';
-import ActivityIndicator from '../components/ActivityIndicator';
 import { StyleSheet, View, ScrollView } from 'react-native';
+import ActivityIndicator from '../components/ActivityIndicator';
 import colors from '../config/colors';
 import Text from '../components/Text';
 import Liked from '../components/Liked';
@@ -25,6 +25,10 @@ function MovieDetailScreen({ route }) {
       dispatch(clearCurrent());
     };
   }, [item]);
+
+  const toggleFavoriteHandler = useCallback(() => {
+    dispatch(addToFavorite(movie));
+  }, [dispatch, movie]);
 
   return (
     <ScrollView>
@@ -49,7 +53,7 @@ function MovieDetailScreen({ route }) {
             style={styles.liked}
             size={30}
             favorite={movie?.favorite}
-            onPress={() => dispatch(addToFavorite(movie))}
+            onPress={() => toggleFavoriteHandler()}
           />
           <View style={styles.detailContainer}>
             <Text style={styles.date}>

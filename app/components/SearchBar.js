@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 import defaultStyles from '../config/styles';
 
 function SearchBar({ width = '100%', ...otherProps }) {
-  const [text, setText] = useState('');
   return (
     <View style={[styles.container, { width }]}>
       <Feather

@@ -62,7 +62,6 @@ function FavoriteItem({ data, renderRightActions }) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 20,
     marginVertical: 10,
     flexDirection: 'row',
     height: 100,

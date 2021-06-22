@@ -4,7 +4,7 @@ import { View, StyleSheet, Image } from 'react-native';
 
 function GradientImage({ uri }) {
   return (
-    <View style={styles.container}>
+    <View>
       <Image style={styles.image} source={{ uri }} />
       <LinearGradient
         colors={[
@@ -22,7 +22,6 @@ function GradientImage({ uri }) {
 }
 
 const styles = StyleSheet.create({
-  container: {},
   image: {
     height: 450,
     width: '100%',

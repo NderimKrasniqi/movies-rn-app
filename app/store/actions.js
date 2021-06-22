@@ -1,4 +1,3 @@
-import axios from 'axios';
 import fetchApi from '../api/data';
 import {
   TOGGLE_FAVORITE,

@@ -1,11 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-import HomeScreen from '../screens/HomeScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import ExploreNavigator from './ExploreNavigator';
-import { color } from 'react-native-reanimated';
 import colors from '../config/colors';
 
 const Tab = createBottomTabNavigator();

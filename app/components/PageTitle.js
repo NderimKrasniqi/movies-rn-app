@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import defaultStyles from '../config/styles';
+import colors from '../config/colors';
 import Text from './Text';
 
 function PageTitle({ title, tag, style }) {
@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 30,
-    color: defaultStyles.colors.white,
+    color: colors.white,
   },
   tag: {
     marginTop: 7,
     fontSize: 14,
-    color: defaultStyles.colors.light,
+    color: colors.light,
   },
 });
 
