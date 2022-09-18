@@ -71,7 +71,7 @@ function MovieDetailScreen({ route }) {
               score={movie?.vote_average}
               size={20}
             />
-            <Text style={styles.vote}>{movie?.vote_average}</Text>
+            <Text style={styles.vote}>{Math.trunc(movie?.vote_average)}</Text>
             <Text style={styles.voteTotal}>/10</Text>
           </View>
           <Text style={styles.overview}>{movie?.overview}</Text>

@@ -36,23 +36,23 @@ function FavoriteItem({ data, renderRightActions }) {
           </Text>
           <View style={styles.vote}>
             <MaterialCommunityIcons
-              name='star'
+              name="star"
               color={colors.yellow}
               size={15}
             />
-            <Text style={styles.voteText}>{vote_average}</Text>
+            <Text style={styles.voteText}>{Math.trunc(vote_average)}</Text>
           </View>
-          {status && <Info title='Status' data={status} />}
-          {release_date && <Info title='Release' data={release_date} />}
-          {last_air_date && <Info title='Last airdate' data={last_air_date} />}
+          {status && <Info title="Status" data={status} />}
+          {release_date && <Info title="Release" data={release_date} />}
+          {last_air_date && <Info title="Last airdate" data={last_air_date} />}
           {next_episode_to_air && (
-            <Info title='Next airdate' data={next_episode_to_air['air_date']} />
+            <Info title="Next airdate" data={next_episode_to_air['air_date']} />
           )}
         </View>
 
         <MaterialCommunityIcons
           color={colors.light}
-          name='chevron-right'
+          name="chevron-right"
           size={25}
         />
       </View>
